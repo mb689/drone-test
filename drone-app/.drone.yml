@@ -1,0 +1,21 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: install dependencies
+    image: node:18
+    commands:
+      - npm ci
+
+  - name: run tests
+    image: node:18
+    commands:
+      - npm test
+
+trigger:
+  branch:
+    - main
+  event:
+    - push
+    - pull_request
